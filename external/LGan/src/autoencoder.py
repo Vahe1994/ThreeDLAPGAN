@@ -23,7 +23,7 @@ class Configuration():
                  training_epochs=200, batch_size=10, learning_rate=0.001, denoising=False,
                  saver_step=None, train_dir=None, z_rotate=False, loss='chamfer', gauss_augment=None,
                  saver_max_to_keep=None, loss_display_step=1, debug=False,
-                 n_z=None, n_output=None, latent_vs_recon=1.0, consistent_io=None):
+                 n_z=None, n_output=None, latent_vs_recon=1.0, consistent_io=None,held_out_step =None):
 
         # Parameters for any AE
         self.n_input = n_input
@@ -45,6 +45,7 @@ class Configuration():
         self.saver_max_to_keep = saver_max_to_keep
         self.training_epochs = training_epochs
         self.debug = debug
+        self.held_out_step = held_out_step
 
         # Used in VAE
         self.latent_vs_recon = np.array([latent_vs_recon], dtype=np.float32)[0]
@@ -106,8 +107,8 @@ class AutoEncoder(Neural_Net):
     def restore_model(self, model_path, epoch, verbose=False):
         '''Restore all the variables of a saved auto-encoder model.
         '''
-        print(model_saver_id)
         self.saver.restore(self.sess, osp.join(model_path, model_saver_id + '-' + str(int(epoch))))
+
         if self.epoch.eval(session=self.sess) != epoch:
             warnings.warn('Loaded model\'s epoch doesn\'t match the requested one.')
         else:
