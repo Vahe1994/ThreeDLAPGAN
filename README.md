@@ -31,3 +31,8 @@ https://plot.ly/~Vahe1994/278
 
 
 <iframe width="900" height="800" frameborder="0" scrolling="no" src="//plot.ly/~Vahe1994/278.embed"></iframe>
+
+<div>
+    <a href="https://plot.ly/~Vahe1994/278/?share_key=WM0FVbW7QlRqgagYQ6sqvD" target="_blank" title="track2048" style="display: block; text-align: center;"><img src="https://plot.ly/~Vahe1994/278.png?share_key=WM0FVbW7QlRqgagYQ6sqvD" alt="track2048" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+    <script data-plotly="Vahe1994:278" sharekey-plotly="WM0FVbW7QlRqgagYQ6sqvD" src="https://plot.ly/embed.js" async></script>
+</div>
