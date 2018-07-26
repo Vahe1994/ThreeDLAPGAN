@@ -1,4 +1,4 @@
-# 3DLAPGAN
+# 3D Laplacian GAN for Point Cloud
 
 ## Introduction
 
