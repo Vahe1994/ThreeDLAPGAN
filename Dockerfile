@@ -2,7 +2,7 @@ FROM tensorflow/tensorflow:1.3.0-devel-gpu-py3
 
 LABEL maintainer="Alexey Artemov <artonson@yandex.ru>"
 
-RUN pip3 --no-cache-dir install --upgrade \
+RUN pip3 --no-cache-dir --timeout=60 install --upgrade \
         Pillow \
         h5py \
         ipykernel \
@@ -30,6 +30,4 @@ WORKDIR /root
 EXPOSE 6006
 # IPython
 EXPOSE 8888
-
-RUN pip3 uninstall -y tensorflow
 
