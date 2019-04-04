@@ -1,0 +1,65 @@
+FROM tensorflow/tensorflow:1.3.0-devel-gpu-py3
+
+LABEL maintainer="Alexey Artemov <artonson@yandex.ru>"
+
+RUN pip3 --no-cache-dir install --upgrade \
+        Pillow \
+        h5py \
+        ipykernel \
+        jupyter \
+        keras_applications \
+        keras_preprocessing \
+        matplotlib \
+        mock \
+        numpy \
+        scipy \
+        scikit-learn \
+        scikit-image \
+        pandas \
+        Cython \
+        nose \
+        torch \
+        torchvision \
+        tflearn \
+        && \
+    python3 -m ipykernel.kernelspec
+
+RUN pip3 uninstall -y tensorflow
+
+# Download and build TensorFlow.
+WORKDIR /tensorflow
+#RUN git clone --branch=r1.10 --depth=1 https://github.com/tensorflow/tensorflow.git .
+
+# Configure the build for our CUDA configuration.
+ENV CI_BUILD_PYTHON /usr/bin/python3
+ENV PYTHON_BIN_PATH /usr/bin/python3
+ENV LD_LIBRARY_PATH /usr/local/cuda/lib64/stubs:/usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
+ENV TF_NEED_HDFS 0
+ENV TF_NEED_TENSORRT 0
+ENV TF_NEED_KAFKA=0
+ENV TF_NEED_AWS=0
+ENV TF_NEED_GCP=0
+#ENV TF_NEED_CUDA 1
+#ENV TF_CUDA_COMPUTE_CAPABILITIES=3.5,5.2,6.0,6.1,7.0
+#ENV TF_CUDA_VERSION=9.0
+#ENV TF_CUDNN_VERSION=7
+# Select NCCL 2.x
+ENV TF_NCCL_VERSION=2
+
+RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/libcuda.so.1 && \
+    tensorflow/tools/ci_build/builds/configured GPU && \
+    bazel build -c opt --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=1" \
+        tensorflow/tools/pip_package:build_pip_package && \
+    bazel-bin/tensorflow/tools/pip_package/build_pip_package /mnt && \
+    pip3 --no-cache-dir install --upgrade /mnt/tensorflow-*.whl && \
+    rm /usr/local/cuda/lib64/stubs/libcuda.so.1 && \
+    rm -rf /tmp/pip && \
+    rm -rf /root/.cache
+
+WORKDIR /root
+
+# TensorBoard
+EXPOSE 6006
+# IPython
+EXPOSE 8888
+
