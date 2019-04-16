@@ -54,7 +54,7 @@ def iterate_in_chunks(l, n):
     '''Yield successive 'n'-sized chunks from iterable 'l'.
     Note: last chunk will be smaller than l if n doesn't divide l perfectly.
     '''
-    for i in xrange(0, len(l), n):
+    for i in range(0, len(l), n):
         yield l[i:i + n]
 
         
@@ -92,9 +92,9 @@ def unit_cube_grid_point_cloud(resolution, clip_sphere=False):
     '''
     grid = np.ndarray((resolution, resolution, resolution, 3), np.float32)
     spacing = 1.0 / float(resolution - 1)
-    for i in xrange(resolution):
-        for j in xrange(resolution):
-            for k in xrange(resolution):
+    for i in range(resolution):
+        for j in range(resolution):
+            for k in range(resolution):
                 grid[i, j, k, 0] = i * spacing - 0.5
                 grid[i, j, k, 1] = j * spacing - 0.5
                 grid[i, j, k, 2] = k * spacing - 0.5

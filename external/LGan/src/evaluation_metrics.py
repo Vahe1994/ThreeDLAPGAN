@@ -16,16 +16,16 @@ import numpy as np
 import warnings
 
 from scipy.stats import entropy
-from . general_utils import iterate_in_chunks, unit_cube_grid_point_cloud
+from ThreeDLAPGAN.external.LGan.src.general_utils import iterate_in_chunks, unit_cube_grid_point_cloud
 
 try:
     from sklearn.neighbors import NearestNeighbors
 except:
-    print ('Sklearn module not installed (JSD metric will not work).')
+    print('Sklearn module not installed (JSD metric will not work).')
 
 try:    
-    from .. external.structural_losses.tf_nndistance import nn_distance
-    from .. external.structural_losses.tf_approxmatch import approx_match, match_cost
+    from ThreeDLAPGAN.external.structural_losses.tf_nndistance import nn_distance
+    from ThreeDLAPGAN.external.structural_losses.tf_approxmatch import approx_match, match_cost
 except:
     print('External Losses (Chamfer-EMD) cannot be loaded. Please install them first.')
     
@@ -119,10 +119,10 @@ def minimum_mathing_distance(sample_pcs, ref_pcs, batch_size, normalize=True, se
                                                                                   sess=sess, use_sqrt=use_sqrt,
                                                                                   use_EMD=use_EMD)
     matched_dists = []
-    for i in xrange(n_ref):
+    for i in range(n_ref):
         best_in_all_batches = []
         if verbose and i % 50 == 0:
-            print i
+            print(i)
         for sample_chunk in iterate_in_chunks(sample_pcs, batch_size):
             feed_dict = {ref_pl: np.expand_dims(ref_pcs[i], 0), sample_pl: sample_chunk}
             b = sess.run(best_in_batch, feed_dict=feed_dict)
@@ -166,12 +166,12 @@ def coverage(sample_pcs, ref_pcs, batch_size, normalize=True, sess=None, verbose
                                                                                             use_EMD=use_EMD)
     matched_gt = []
     matched_dist = []
-    for i in xrange(n_sam):
+    for i in range(n_sam):
         best_in_all_batches = []
         loc_in_all_batches = []
 
         if verbose and i % 50 == 0:
-            print i
+            print(i)
 
         for ref_chunk in iterate_in_chunks(ref_pcs, batch_size):
             feed_dict = {ref_pl: np.expand_dims(sample_pcs[i], 0), sample_pl: ref_chunk}

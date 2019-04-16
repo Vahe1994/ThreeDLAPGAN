@@ -9,11 +9,11 @@ import time
 import tensorflow as tf
 from tflearn import is_training
 
-from . gan import GAN
+from ThreeDLAPGAN.external.LGan.src.gan import GAN
 #there is no such file or directory 
 # from .. fundamentals.layers import safe_log
 #maybe you want import this 
-from . tf_utils import safe_log
+from ThreeDLAPGAN.external.LGan.src.tf_utils import safe_log
 
 
 class RawGAN(GAN):

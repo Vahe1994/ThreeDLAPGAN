@@ -46,7 +46,8 @@ if __name__=='__main__':
 	with tf.Session('') as sess:
 		xyz1=np.random.randn(32,16384,3).astype('float32')
 		xyz2=np.random.randn(32,1024,3).astype('float32')
-		with tf.device('/gpu:0'):
+        # gpu0
+		with tf.device('/gpu:1'):
 			inp1=tf.Variable(xyz1)
 			inp2=tf.constant(xyz2)
 			reta,retb,retc,retd=nn_distance(inp1,inp2)
@@ -56,11 +57,11 @@ if __name__=='__main__':
 		t0=time.time()
 		t1=t0
 		best=1e100
-		for i in xrange(100):
+		for i in range(100):
 			trainloss,_=sess.run([loss,train])
 			newt=time.time()
 			best=min(best,newt-t1)
-			print i,trainloss,(newt-t0)/(i+1),best
+			print (i,trainloss,(newt-t0)/(i+1),best)
 			t1=newt
 		#print sess.run([inp1,retb,inp2,retd])
 		#grads=compute_gradient([inp1,inp2],[(16,32,3),(16,32,3)],loss,(1,),[xyz1,xyz2])

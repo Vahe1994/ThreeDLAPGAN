@@ -11,13 +11,15 @@ import os.path as osp
 from tflearn.layers.conv import conv_1d
 from tflearn.layers.core import fully_connected
 
-from . in_out import create_dir
-from . autoencoder import AutoEncoder
-from . general_utils import apply_augmentations
+from ThreeDLAPGAN.external.LGan.src.in_out import create_dir
+from ThreeDLAPGAN.external.LGan.src.autoencoder import AutoEncoder
+from ThreeDLAPGAN.external.LGan.src.general_utils import apply_augmentations
 
 try:    
-    from .. external.structural_losses.tf_nndistance import nn_distance
-    from .. external.structural_losses.tf_approxmatch import approx_match, match_cost
+    from ThreeDLAPGAN.external.structural_losses.tf_nndistance import nn_distance
+    from ThreeDLAPGAN.external.structural_losses.tf_approxmatch import approx_match, match_cost
+except ImportError:
+    print('Enable to import file')
 except:
     print('External Losses (Chamfer-EMD) cannot be loaded. Please install them first.')
     
@@ -111,7 +113,7 @@ class PointNetAutoEncoder(AutoEncoder):
             fit = self.partial_fit
 
         # Loop over all batches
-        for _ in xrange(n_batches):
+        for _ in range(n_batches):
 
             if self.is_denoising:
                 original_data, _, batch_i = train_data.next_batch(batch_size)

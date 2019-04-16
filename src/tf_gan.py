@@ -12,9 +12,9 @@ import tensorflow as tf
 # there is not such file or directory
 # from general_tools.in_out.basics import create_dir
 # Maybe you ment it should be 
-from . in_out import create_dir
+from ThreeDLAPGAN.external.LGan.src.in_out import create_dir
 # file direction correction(Vage)
-from . neural_net import Neural_Net
+from ThreeDLAPGAN.external.LGan.src.neural_net import Neural_Net
 
 
 class GAN(Neural_Net):

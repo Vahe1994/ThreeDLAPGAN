@@ -7,13 +7,13 @@ import numpy as np
 import os.path as osp
 from sklearn.neighbors import NearestNeighbors
 
-from ThreeDLAPGAN.src.ae_templates import mlp_architecture_ala_iclr_18, default_train_params
-from ThreeDLAPGAN.src.point_net_ae import PointNetAutoEncoder
-from  ThreeDLAPGAN.src.in_out import  PointCloudDataSet
+from ThreeDLAPGAN.external.LGan.src.ae_templates import mlp_architecture_ala_iclr_18, default_train_params
+from ThreeDLAPGAN.external.LGan.src.point_net_ae import PointNetAutoEncoder
+from  ThreeDLAPGAN.external.LGan.src.in_out import  PointCloudDataSet
 
-from  ThreeDLAPGAN.src.in_out import snc_category_to_synth_id, create_dir, PointCloudDataSet
+from  ThreeDLAPGAN.external.LGan.src.in_out import snc_category_to_synth_id, create_dir, PointCloudDataSet
 
-from ThreeDLAPGAN.src.tf_utils import reset_tf_graph
+from ThreeDLAPGAN.external.LGan.src.tf_utils import reset_tf_graph
 
 def smart_downsampling(data,pc_count,write_dir = 'log.txt'):
     buf_size=1
@@ -34,12 +34,12 @@ def smart_downsampling(data,pc_count,write_dir = 'log.txt'):
 
 def smart_upsampling(data,pc_count,num_neighbors=5,write_dir = 'log.txt'):
     buf_size=1
-    fout = open('log.txt', 'wb', buf_size)
+    #fout = open('log.txt', 'wb', buf_size)
     pclouds_smart = np.empty([data.shape[0],data.shape[1]+pc_count, data.shape[2]], dtype=np.float32)
     for i,pc in tqdm(enumerate(data)):
         while True:
             try:
-                fout.write(str(i)+'\n')
+                #fout.write(str(i)+'\n')
                 knn  = NearestNeighbors(n_neighbors=num_neighbors)
 
                 knn.fit(pc)
@@ -50,7 +50,7 @@ def smart_upsampling(data,pc_count,num_neighbors=5,write_dir = 'log.txt'):
                 break
             except:
                 continue
-    fout.close()
+    #fout.close()
     return pclouds_smart
 
 def read_pickle_data(input='data.pkl'):

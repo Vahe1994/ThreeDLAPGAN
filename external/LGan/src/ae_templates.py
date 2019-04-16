@@ -5,7 +5,7 @@ Created on September 2, 2017
 '''
 import numpy as np
 
-from . encoders_decoders import encoder_with_convs_and_symmetry, decoder_with_fc_only
+from ThreeDLAPGAN.external.LGan.src.encoders_decoders import encoder_with_convs_and_symmetry, decoder_with_fc_only
 
 
 def mlp_architecture_ala_iclr_18(n_pc_points, bneck_size, bneck_post_mlp=False):

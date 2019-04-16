@@ -13,7 +13,7 @@ from tflearn.layers.core import fully_connected, dropout
 from tflearn.layers.conv import conv_1d, avg_pool_1d
 from tflearn.layers.normalization import batch_normalization
 from tflearn.layers.core import fully_connected, dropout
-from . tf_utils import expand_scope_by_name, replicate_parameter_for_all_layers
+from ThreeDLAPGAN.external.LGan.src.tf_utils import expand_scope_by_name, replicate_parameter_for_all_layers
 
 
 def discriminator_smpl(input,scope=None,reuse=False):

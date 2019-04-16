@@ -7,8 +7,9 @@ import re
 from six.moves import cPickle
 from multiprocessing import Pool
 
-from . general_utils import rand_rotation_matrix
-from .. external.python_plyfile.plyfile import PlyElement, PlyData
+from ThreeDLAPGAN.external.LGan.src.general_utils import rand_rotation_matrix
+
+from ThreeDLAPGAN.external.python_plyfile.plyfile import PlyElement, PlyData
 
 snc_synth_id_to_category = {
     '02691156': 'airplane',  '02773838': 'bag',        '02801938': 'basket',

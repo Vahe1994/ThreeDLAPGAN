@@ -22,9 +22,11 @@ class Neural_Net(object):
         if sess is None:
             config = tf.ConfigProto()
             config.gpu_options.allow_growth = True
+            print(config)
             self.sess = tf.Session(config=config)
+            
         
-
+        
         with tf.variable_scope(name):
             with tf.device('/cpu:0'):
                 self.epoch = tf.get_variable('epoch', [], initializer=tf.constant_initializer(0), trainable=False)

@@ -12,7 +12,7 @@ def expand_scope_by_name(scope, name):
     """ expand tf scope by given name.
     """
 
-    if isinstance(scope, basestring):
+    if isinstance(scope, str):
         scope += '/' + name
         return scope
 
