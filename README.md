@@ -1,8 +1,8 @@
-# 3D Laplacian GAN for Point Cloud
+## Deep-Vectorization-of-Technical-Drawings | [Webpage](http://adase.group/3ddl/projects/3d-laplatgan/) | [Paper](https://arxiv.org/abs/1912.06466) | 
+Official Pytorch repository for VISAPP 2020 [Latent-Space Laplacian Pyramids for Adversarial Representation Learning with 3D Point Clouds]()
 
 ## Introduction
 
-The paper you can find here https://www.hse.ru/en/edu/vkr/219584552 (in. Russian).
 
 This repository is devoted to the topic of three-dimensional point clouds generation. It is proposed to implement the architecture of a multilevel generative adversarial neural network. This work is based on the concept set forth in the article «Deep Generative Image Models using a Laplacian Pyramid of Adversarial Networks», whose authors propose the structure of a multilevel generative adversarial neural network, for obtaining a better quality in high resolution images, and on the article «Representation Learning and Adversarial Generation of 3D Point Clouds», showing the efficiency of point cloud generation by using the auto-encoder and generative adversarial network, which generates a latent representation, instead of direct generation of a point cloud. You should check he's repository https://github.com/optas/latent_3d_points ,because this one based on it. Code that provided from optas is based on tensorflow 1.3, and my code on Pytorch 0.3 +
 
