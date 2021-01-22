@@ -1,4 +1,4 @@
-## Deep-Vectorization-of-Technical-Drawings | [Webpage](http://adase.group/3ddl/projects/3d-laplatgan/) | [Paper](https://arxiv.org/abs/1912.06466) | 
+## Latent-Space Laplacian Pyramids for Adversarial Representation Learning with 3D Point Clouds | [Webpage](http://adase.group/3ddl/projects/3d-laplatgan/) | [Paper](https://arxiv.org/abs/1912.06466) | 
 Official Pytorch repository for VISAPP 2020 [Latent-Space Laplacian Pyramids for Adversarial Representation Learning with 3D Point Clouds]()
 
 ## Introduction
